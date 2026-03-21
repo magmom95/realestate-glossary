@@ -15,15 +15,13 @@ const FIELD_LABELS: Record<string, string> = {
 
 // ── 간단한 인메모리 Rate Limiting ────────────────────────────
 const rateMap = new Map<string, number[]>();
-const RATE_LIMIT = 5;       // 최대 요청 수
-const RATE_WINDOW = 60_000; // 1분
+const RATE_LIMIT = 5;
+const RATE_WINDOW = 60_000;
 
 function isRateLimited(ip: string): boolean {
   const now = Date.now();
   const timestamps = (rateMap.get(ip) ?? []).filter((t) => now - t < RATE_WINDOW);
-
   if (timestamps.length >= RATE_LIMIT) return true;
-
   timestamps.push(now);
   rateMap.set(ip, timestamps);
   return false;
@@ -86,7 +84,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const { type, term, field, content } = await req.json();
+    const { type, term, field, content, fields } = await req.json();
 
     if (!term?.trim()) {
       return NextResponse.json({ error: '용어명을 입력해주세요.' }, { status: 400 });
@@ -97,11 +95,28 @@ export async function POST(req: NextRequest) {
 
     if (type === 'add') {
       ({ subject, html } = buildAddEmail(term.trim()));
+
     } else if (type === 'edit') {
-      if (!field || !content?.trim()) {
+      // fields 배열 또는 단일 field/content 둘 다 처리
+      const fieldEntries: { field: string; content: string }[] = fields?.length
+        ? fields
+        : field && content?.trim()
+          ? [{ field, content }]
+          : [];
+
+      if (fieldEntries.length === 0) {
         return NextResponse.json({ error: '필드와 내용을 입력해주세요.' }, { status: 400 });
       }
-      ({ subject, html } = buildEditEmail(term.trim(), field, content.trim()));
+
+      if (fieldEntries.length === 1) {
+        ({ subject, html } = buildEditEmail(term.trim(), fieldEntries[0].field, fieldEntries[0].content));
+      } else {
+        subject = `[부동산 사전] 수정 제안: ${escapeHtml(term.trim())} (${fieldEntries.length}건)`;
+        html = fieldEntries
+          .map(({ field: f, content: c }) => buildEditEmail(term.trim(), f, c).html)
+          .join('<hr style="border:none;border-top:1px solid #e0e0e0;margin:8px 0;">');
+      }
+
     } else {
       return NextResponse.json({ error: '잘못된 요청입니다.' }, { status: 400 });
     }
@@ -119,6 +134,7 @@ export async function POST(req: NextRequest) {
     }
 
     return NextResponse.json({ success: true });
+
   } catch (e) {
     console.error(e);
     return NextResponse.json({ error: '서버 오류가 발생했습니다.' }, { status: 500 });

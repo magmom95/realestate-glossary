@@ -25,8 +25,7 @@ export default function HomePage() {
           <em className="text-[#e8c97d] not-italic">비유로 이해하세요</em>
         </h1>
         <p className="text-sm sm:text-base text-[#8a8276] leading-relaxed max-w-md mx-auto mb-8 sm:mb-10">
-          모르는 용어를 검색하고 쉬운 비유로 이해하고 연관 개념으로 이어서
-          학습하는 구조
+          검색하고  쉬운 비유로 이해하고 연관 개념으로 학습하는 부동산
         </p>
         <SearchBox />
       </section>

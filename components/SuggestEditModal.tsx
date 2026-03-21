@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Toast, useToast } from './Toast';
 import FullScreenSpinner from './FullScreenSpinner';
 
+
 const FIELDS = [
   { key: 'easy_def', label: '정의', desc: '더 정확하거나 이해하기 쉬운 정의를 알고 있나요?' },
   { key: 'analogy',  label: '비유', desc: '이 용어를 더 잘 설명하는 비유가 있나요?' },
@@ -78,7 +79,7 @@ function SuggestEditModal({ termId, termName, onClose }: Props & { onClose: () =
 
       if (res.ok) {
         show(`${entries.length}건의 제안이 전송됐어요. 관리자 검토 후 반영됩니다 🙏`);
-        setTimeout(onClose, 1800);
+        onClose(); // 바로 닫기
       } else {
         const data = await res.json();
         show(data.error ?? '전송에 실패했어요.', 'error');
