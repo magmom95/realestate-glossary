@@ -6,6 +6,7 @@ const config: Config = {
     './pages/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
+    '!./app/**/opengraph-image.tsx',
     './src/**/*.{ts,tsx}',
   ],
   theme: {
