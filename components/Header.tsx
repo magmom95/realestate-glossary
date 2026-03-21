@@ -1,0 +1,16 @@
+import Link from 'next/link';
+import NavLinks from './NavLinks';
+
+export default function Header() {
+  return (
+    <header className="sticky top-0 z-[100] h-[60px] flex items-center px-6 gap-6
+      bg-[rgba(13,13,13,0.85)] backdrop-blur-xl border-b border-white/[0.07]">
+      <Link href="/" className="flex items-center gap-2 shrink-0">
+        <span className="text-xl">🏠</span>
+        <span className="text-[15px] font-bold tracking-tight">부동산 사전</span>
+      </Link>
+
+      <NavLinks />
+    </header>
+  );
+}
