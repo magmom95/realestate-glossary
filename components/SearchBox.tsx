@@ -72,22 +72,22 @@ export default function SearchBox({ initialQuery = '' }: { initialQuery?: string
       {navigating && <FullScreenSpinner message="검색 중…" />}
 
       {/* Input */}
-      <div className={`flex items-center bg-[#141414] border rounded-2xl pl-4 pr-1.5 py-1.5 transition-all duration-200
+      <div className={`flex items-center bg-[#141414] border rounded-2xl pl-3 sm:pl-4 pr-1.5 py-1.5 transition-all duration-200
         ${focused ? 'border-[rgba(232,201,125,0.5)] shadow-[0_0_0_3px_rgba(232,201,125,0.08)]' : 'border-white/[0.07]'}`}>
-        <span className="text-base mr-2.5 opacity-40">🔍</span>
+        <span className="text-base mr-2 sm:mr-2.5 opacity-40">🔍</span>
         <input
           value={query}
           onChange={e => setQuery(e.target.value)}
           onKeyDown={handleKeyDown}
           onFocus={() => setFocused(true)}
           onBlur={() => setFocused(false)}
-          placeholder="용어 검색... (예: 전세, LTV, 복비)"
-          className="flex-1 bg-transparent border-none outline-none text-[#f0ece4]
-            text-[15px] py-2.5 placeholder:text-[#4a4640]"
+          placeholder="용어 검색... (예: 전세, LTV)"
+          className="flex-1 min-w-0 bg-transparent border-none outline-none text-[#f0ece4]
+            text-[14px] sm:text-[15px] py-2.5 placeholder:text-[#4a4640]"
         />
         <button onClick={() => handleSearch(query)}
           disabled={navigating}
-          className="px-5 py-2.5 bg-[#e8c97d] text-[#0d0d0d] rounded-[10px] text-sm font-bold shrink-0
+          className="px-3.5 sm:px-5 py-2.5 bg-[#e8c97d] text-[#0d0d0d] rounded-[10px] text-sm font-bold shrink-0
             hover:bg-[#f0d896] transition-colors duration-150 disabled:opacity-50">
           검색
         </button>

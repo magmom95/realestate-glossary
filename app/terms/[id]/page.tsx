@@ -25,11 +25,11 @@ export default async function TermPage({ params }: { params: Promise<{ id: strin
   const related = getRelatedTerms(item);
 
   return (
-    <div className="max-w-2xl mx-auto px-6 py-10">
+    <div className="max-w-2xl mx-auto px-4 sm:px-6 py-6 sm:py-10">
       <BackButton />
 
       {/* Header card */}
-      <div className="bg-[#141414] border border-white/[0.07] rounded-2xl p-8 mb-4">
+      <div className="bg-[#141414] border border-white/[0.07] rounded-2xl p-5 sm:p-8 mb-3 sm:mb-4">
         {/* Meta tags */}
         <div className="flex gap-2 flex-wrap mb-4">
           <Link href={`/category/${encodeURIComponent(item.category)}`}
@@ -44,7 +44,7 @@ export default async function TermPage({ params }: { params: Promise<{ id: strin
         </div>
 
         {/* Title */}
-        <h1 className="font-display text-4xl md:text-5xl font-normal tracking-tight leading-tight mb-3">
+        <h1 className="font-display text-2xl sm:text-4xl md:text-5xl font-normal tracking-tight leading-tight mb-3">
           {item.term}
         </h1>
 
@@ -60,19 +60,19 @@ export default async function TermPage({ params }: { params: Promise<{ id: strin
         )}
 
         {/* Definition */}
-        <p className="text-lg leading-relaxed text-[#f0ece4] pb-6 border-b border-white/[0.07]">
+        <p className="text-base sm:text-lg leading-relaxed text-[#f0ece4] pb-5 sm:pb-6 border-b border-white/[0.07]">
           {item.easy_def}
         </p>
 
         {/* 수정 제안 버튼 */}
-        <div className="flex items-center justify-between mt-5">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mt-4 sm:mt-5">
           <p className="text-xs text-[#4a4640]">내용이 부정확하거나 더 좋은 설명이 있다면 제안해주세요</p>
           <SuggestEditButton termId={item.id} termName={item.term} />
         </div>
       </div>
 
       {/* Analogy */}
-      <div className="bg-[rgba(232,201,125,0.06)] border border-[rgba(232,201,125,0.18)] rounded-xl p-6 mb-3">
+      <div className="bg-[rgba(232,201,125,0.06)] border border-[rgba(232,201,125,0.18)] rounded-xl p-4 sm:p-6 mb-3">
         <div className="flex gap-3">
           <span className="text-xl flex-shrink-0 mt-0.5">💡</span>
           <div>
@@ -83,7 +83,7 @@ export default async function TermPage({ params }: { params: Promise<{ id: strin
       </div>
 
       {/* Example */}
-      <div className="bg-[#141414] border border-white/[0.07] rounded-xl p-6 mb-3">
+      <div className="bg-[#141414] border border-white/[0.07] rounded-xl p-4 sm:p-6 mb-3">
         <div className="flex gap-3">
           <span className="text-xl flex-shrink-0 mt-0.5">📌</span>
           <div>
@@ -117,8 +117,8 @@ export default async function TermPage({ params }: { params: Promise<{ id: strin
 
       {/* Related terms */}
       {related.length > 0 && (
-        <div className="bg-[#141414] border border-white/[0.07] rounded-2xl p-6">
-          <h2 className="text-sm font-bold mb-4 text-[#f0ece4]">🔗 연관 용어</h2>
+        <div className="bg-[#141414] border border-white/[0.07] rounded-2xl p-4 sm:p-6">
+          <h2 className="text-sm font-bold mb-3 sm:mb-4 text-[#f0ece4]">🔗 연관 용어</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
             {related.map(r => (
               <Link key={r.id} href={`/terms/${r.id}`}

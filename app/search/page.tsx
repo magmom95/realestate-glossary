@@ -35,12 +35,12 @@ function SearchResults() {
   const noResults = query && results.length === 0;
 
   return (
-    <div className="max-w-3xl mx-auto px-6 py-10">
+    <div className="max-w-3xl mx-auto px-4 sm:px-6 py-6 sm:py-10">
       <SearchBox initialQuery={query} />
 
       {/* 카테고리 필터 */}
       {results.length > 0 && (
-        <div className="flex gap-2 flex-wrap mt-6">
+        <div className="flex gap-1.5 sm:gap-2 flex-wrap mt-4 sm:mt-6">
           <button
             onClick={() => setCategoryFilter('')}
             className={`px-3 py-1 rounded-full text-xs font-semibold border transition-all duration-150
@@ -106,7 +106,7 @@ function SearchResults() {
         {/* 결과 목록 */}
         {filtered.map((item, idx) => (
           <Link key={item.id} href={`/terms/${item.id}`}
-            className="card card-slide block p-5 animate-in"
+            className="card card-slide block p-4 sm:p-5 animate-in"
             style={{ animationDelay: `${idx * 25}ms` }}
           >
             <div className="flex items-start justify-between gap-3">
@@ -145,7 +145,7 @@ function SearchResults() {
 export default function SearchPage() {
   return (
     <Suspense fallback={
-      <div className="max-w-3xl mx-auto px-6 py-10 flex flex-col gap-3">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 py-6 sm:py-10 flex flex-col gap-3">
         <div className="skeleton h-14 rounded-xl mb-2" />
         {[...Array(5)].map((_, i) => <div key={i} className="skeleton h-24 rounded-xl" />)}
       </div>

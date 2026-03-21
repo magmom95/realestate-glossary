@@ -49,14 +49,20 @@ export function SuggestEditButton({ termId, termName }: Props) {
 
 function SuggestEditModal({ termId, termName, onClose }: Props & { onClose: () => void }) {
   const [selectedField, setSelectedField] = useState<FieldKey>('easy_def');
-  const [content, setContent] = useState('');
+  const [contents, setContents] = useState<Partial<Record<FieldKey, string>>>({});
   const [loading, setLoading] = useState(false);
   const { toast, show, hide } = useToast();
 
   const currentField = FIELDS.find(f => f.key === selectedField)!;
+  const filledCount = FIELDS.filter(f => contents[f.key]?.trim()).length;
+
+  function updateContent(value: string) {
+    setContents(prev => ({ ...prev, [selectedField]: value }));
+  }
 
   async function handleSubmit() {
-    if (!content.trim() || loading) return;
+    const entries = FIELDS.filter(f => contents[f.key]?.trim());
+    if (entries.length === 0 || loading) return;
     setLoading(true);
 
     try {
@@ -66,13 +72,12 @@ function SuggestEditModal({ termId, termName, onClose }: Props & { onClose: () =
         body: JSON.stringify({
           type: 'edit',
           term: termName,
-          field: selectedField,
-          content: content.trim(),
+          fields: entries.map(f => ({ field: f.key, content: contents[f.key]!.trim() })),
         }),
       });
 
       if (res.ok) {
-        show('제안이 전송됐어요. 관리자 검토 후 반영됩니다 🙏');
+        show(`${entries.length}건의 제안이 전송됐어요. 관리자 검토 후 반영됩니다 🙏`);
         setTimeout(onClose, 1800);
       } else {
         const data = await res.json();
@@ -83,12 +88,6 @@ function SuggestEditModal({ termId, termName, onClose }: Props & { onClose: () =
     } finally {
       setLoading(false);
     }
-  }
-
-  // 탭 변경 시 텍스트 초기화
-  function handleTabChange(key: FieldKey) {
-    setSelectedField(key);
-    setContent('');
   }
 
   return (
@@ -109,7 +108,7 @@ function SuggestEditModal({ termId, termName, onClose }: Props & { onClose: () =
           onClick={e => e.stopPropagation()}
         >
           {/* Header */}
-          <div className="flex items-start justify-between p-6 border-b border-white/[0.07]">
+          <div className="flex items-start justify-between p-4 sm:p-6 border-b border-white/[0.07]">
             <div>
               <h2 className="text-base font-bold text-[#f0ece4] mb-1">수정 제안하기</h2>
               <p className="text-sm text-[#8a8276]">
@@ -126,11 +125,11 @@ function SuggestEditModal({ termId, termName, onClose }: Props & { onClose: () =
           </div>
 
           {/* Field Tabs */}
-          <div className="flex gap-1.5 px-6 pt-5 pb-3 overflow-x-auto scrollbar-none">
+          <div className="flex gap-1.5 px-4 sm:px-6 pt-4 sm:pt-5 pb-3 overflow-x-auto scrollbar-none">
             {FIELDS.map(f => (
               <button
                 key={f.key}
-                onClick={() => handleTabChange(f.key)}
+                onClick={() => setSelectedField(f.key)}
                 className={`
                   flex-shrink-0 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all duration-150
                   ${selectedField === f.key
@@ -140,17 +139,19 @@ function SuggestEditModal({ termId, termName, onClose }: Props & { onClose: () =
                 `}
               >
                 {f.label}
+                {contents[f.key]?.trim() && selectedField !== f.key && (
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#52b788] inline-block ml-1" />
+                )}
               </button>
             ))}
           </div>
 
           {/* Content area */}
-          <div className="px-6 pb-5">
+          <div className="px-4 sm:px-6 pb-5">
             <p className="text-xs text-[#4a4640] mb-3">{currentField.desc}</p>
             <textarea
-              key={selectedField} // 탭 바뀌면 리셋
-              value={content}
-              onChange={e => setContent(e.target.value)}
+              value={contents[selectedField] || ''}
+              onChange={e => updateContent(e.target.value)}
               placeholder={`더 좋은 ${currentField.label} 내용을 자유롭게 적어주세요…`}
               rows={4}
               className="
@@ -167,7 +168,7 @@ function SuggestEditModal({ termId, termName, onClose }: Props & { onClose: () =
           </div>
 
           {/* Footer */}
-          <div className="flex gap-2.5 px-6 pb-6">
+          <div className="flex gap-2.5 px-4 sm:px-6 pb-4 sm:pb-6">
             <button
               onClick={onClose}
               className="flex-1 py-2.5 rounded-xl text-sm font-semibold bg-[#1c1c1c] border border-white/[0.07] text-[#8a8276] hover:border-white/[0.15] hover:text-[#f0ece4] transition-all duration-150"
@@ -176,7 +177,7 @@ function SuggestEditModal({ termId, termName, onClose }: Props & { onClose: () =
             </button>
             <button
               onClick={handleSubmit}
-              disabled={!content.trim() || loading}
+              disabled={filledCount === 0 || loading}
               className="
                 flex-[2] py-2.5 rounded-xl text-sm font-bold
                 bg-[#e8c97d] text-[#0d0d0d]
@@ -186,7 +187,7 @@ function SuggestEditModal({ termId, termName, onClose }: Props & { onClose: () =
                 flex items-center justify-center gap-2
               "
             >
-              제안 보내기
+              {filledCount > 1 ? `${filledCount}건 제안 보내기` : '제안 보내기'}
             </button>
           </div>
         </div>

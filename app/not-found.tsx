@@ -3,8 +3,8 @@ import Link from 'next/link';
 export default function NotFound() {
   return (
     <div className="flex flex-col items-center justify-center min-h-[60vh] px-6 text-center gap-4">
-      <span className="text-6xl">🏚️</span>
-      <h1 className="font-display text-4xl font-normal text-[#f0ece4]">용어를 찾을 수 없어요</h1>
+      <span className="text-5xl sm:text-6xl">🏚️</span>
+      <h1 className="font-display text-2xl sm:text-4xl font-normal text-[#f0ece4]">용어를 찾을 수 없어요</h1>
       <p className="text-sm text-[#8a8276]">검색으로 원하는 용어를 찾아보세요</p>
       <div className="flex gap-3 mt-4">
         <Link href="/"

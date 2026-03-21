@@ -27,8 +27,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="bg-[#0d0d0d] text-[#f0ece4] min-h-dvh font-sans">
         <Header />
-        <main className="min-h-[calc(100dvh-60px)]">{children}</main>
-        <footer className="border-t border-white/[0.07] py-8 text-center text-xs text-[#4a4640]">
+        <main className="min-h-[calc(100dvh-52px)] sm:min-h-[calc(100dvh-60px)]">{children}</main>
+        <footer className="border-t border-white/[0.07] py-6 sm:py-8 text-center text-[11px] sm:text-xs text-[#4a4640] px-4">
           © 2026 부동산 용어 사전 · 초보자를 위한 검색 기반 학습 엔진
         </footer>
       </body>

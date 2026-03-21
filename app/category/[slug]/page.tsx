@@ -23,20 +23,20 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-6 py-10">
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-10">
       <BackButton />
 
       {/* Header */}
-      <div className="flex items-center gap-5 bg-[#141414] border border-white/[0.07] rounded-2xl p-7 mb-8">
-        <div className="w-16 h-16 flex items-center justify-center text-4xl
-          bg-[rgba(232,201,125,0.1)] rounded-2xl shrink-0">
+      <div className="flex items-center gap-3 sm:gap-5 bg-[#141414] border border-white/[0.07] rounded-2xl p-4 sm:p-7 mb-6 sm:mb-8">
+        <div className="w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center text-2xl sm:text-4xl
+          bg-[rgba(232,201,125,0.1)] rounded-xl sm:rounded-2xl shrink-0">
           {catInfo.emoji}
         </div>
         <div>
-          <h1 className="font-display text-3xl md:text-4xl font-normal tracking-tight mb-2">
+          <h1 className="font-display text-2xl sm:text-3xl md:text-4xl font-normal tracking-tight mb-1 sm:mb-2">
             {catInfo.label}
           </h1>
-          <div className="flex gap-3 text-xs text-[#4a4640]">
+          <div className="flex flex-wrap gap-1.5 sm:gap-3 text-[11px] sm:text-xs text-[#4a4640]">
             <span>총 {items.length}개</span>
             <span>·</span>
             <span>입문 {byLevel.입문.length} / 중급 {byLevel.중급.length} / 고급 {byLevel.고급.length}</span>
@@ -54,10 +54,10 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
               <LevelBadge level={level} />
               <span className="text-xs text-[#4a4640]">{lvItems.length}개</span>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5 sm:gap-3">
               {lvItems.map((item) => (
                 <Link key={item.id} href={`/terms/${item.id}`}
-                  className="block p-5 bg-[#141414] border border-white/[0.07] rounded-xl
+                  className="block p-4 sm:p-5 bg-[#141414] border border-white/[0.07] rounded-xl
                     hover:-translate-y-0.5 hover:border-white/[0.15] hover:shadow-[0_4px_24px_rgba(0,0,0,0.4)]
                     transition-all duration-200">
                   <div className="flex justify-between items-start mb-2">
