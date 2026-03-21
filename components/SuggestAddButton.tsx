@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { Toast, useToast } from './Toast';
 import FullScreenSpinner from './FullScreenSpinner';
-
+import { useRouter } from 'next/navigation';
 interface SuggestAddButtonProps {
   query: string;
 }
@@ -10,6 +10,7 @@ interface SuggestAddButtonProps {
 export function SuggestAddButton({ query }: SuggestAddButtonProps) {
   const [loading, setLoading] = useState(false);
   const { toast, show, hide } = useToast();
+  const router = useRouter();
 
   async function handleClick() {
     if (!query.trim() || loading) return;
@@ -24,6 +25,7 @@ export function SuggestAddButton({ query }: SuggestAddButtonProps) {
 
       if (res.ok) {
         show('요청이 전송됐어요. 관리자 검토 후 반영됩니다 🙏');
+        setTimeout(() => router.push('/'), 1500); // 토스트 보여주고 이동
       } else {
         const data = await res.json();
         show(data.error ?? '전송에 실패했어요. 다시 시도해주세요.', 'error');
