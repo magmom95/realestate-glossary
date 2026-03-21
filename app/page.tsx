@@ -26,25 +26,26 @@ export default function HomePage() {
       </section>
 
       {/* Stats */}
-      <section className="grid grid-cols-3 gap-4 mb-16">
+      <section className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-16">
         {[
-          { label: '전체 용어', value: `${stats.total}개`, emoji: '📚' },
-          { label: '입문 용어', value: `${stats.byLevel['입문']}개`, emoji: '🌱' },
-          { label: '고급 용어', value: `${stats.byLevel['고급']}개`, emoji: '🎓' },
+          { label: '전체 용어', value: `${stats.total}개`, emoji: '📚', href: '/search?level=전체' },
+          { label: '입문 용어', value: `${stats.byLevel['입문']}개`, emoji: '🌱', href: '/search?level=입문' },
+          { label: '고급 용어', value: `${stats.byLevel['고급']}개`, emoji: '🎓', href: '/search?level=고급' },
         ].map((s) => (
-          <div key={s.label}
-            className="bg-[#141414] border border-white/[0.07] rounded-xl p-5 text-center">
+          <Link key={s.label} href={s.href}
+            className="bg-[#141414] border border-white/[0.07] rounded-xl p-5 text-center
+              hover:border-white/[0.15] hover:bg-[#1c1c1c] transition-all duration-150">
             <div className="text-2xl mb-2">{s.emoji}</div>
             <div className="text-3xl font-bold text-[#e8c97d] tracking-tight">{s.value}</div>
             <div className="text-xs text-[#4a4640] mt-1">{s.label}</div>
-          </div>
+          </Link>
         ))}
       </section>
 
       {/* Categories */}
       <section className="mb-16">
         <h2 className="text-lg font-bold mb-5 tracking-tight">카테고리 탐색</h2>
-        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2.5">
+        <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-2.5">
           {ALL_CATEGORIES.map((cat) => (
             <Link key={cat.value}
               href={`/category/${encodeURIComponent(cat.value)}`}

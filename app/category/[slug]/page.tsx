@@ -6,7 +6,7 @@ import BackButton from '@/components/BackButton';
 import LevelBadge from '@/components/LevelBadge';
 
 export async function generateStaticParams() {
-  return ALL_CATEGORIES.map((c) => ({ slug: encodeURIComponent(c.value) }));
+  return ALL_CATEGORIES.map((c) => ({ slug: c.value }));
 }
 
 export default async function CategoryPage({ params }: { params: Promise<{ slug: string }> }) {

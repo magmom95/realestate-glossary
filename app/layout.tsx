@@ -29,7 +29,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <main className="min-h-[calc(100dvh-60px)]">{children}</main>
         <footer className="border-t border-white/[0.07] py-8 text-center text-xs text-[#4a4640]">
-          © 2025 부동산 용어 사전 · 초보자를 위한 검색 기반 학습 엔진
+          © 2026 부동산 용어 사전 · 초보자를 위한 검색 기반 학습 엔진
         </footer>
       </body>
     </html>

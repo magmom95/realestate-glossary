@@ -3,6 +3,7 @@ import { useEffect, useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { searchGlossary, getBeginnerItems, ALL_CATEGORIES } from '@/lib/search';
+import { glossaryData } from '@/data/glossary';
 import { RealEstateGlossaryItem } from '@/lib/types';
 import SearchBox from '@/components/SearchBox';
 import LevelBadge from '@/components/LevelBadge';
@@ -21,6 +22,10 @@ function SearchResults() {
       setResults(searchGlossary(query));
     } else if (levelFilter === '입문') {
       setResults(getBeginnerItems().map(i => ({ ...i, score: 0 })));
+    } else if (levelFilter === '고급') {
+      setResults(glossaryData.filter(i => i.level === '고급').map(i => ({ ...i, score: 0 })));
+    } else if (levelFilter === '전체') {
+      setResults(glossaryData.map(i => ({ ...i, score: 0 })));
     } else {
       setResults([]);
     }
@@ -68,7 +73,7 @@ function SearchResults() {
       <div className="mt-6 flex flex-col gap-2.5">
         {/* 결과 없음 */}
         {noResults && (
-          <div className="flex flex-col items-center py-16 gap-5 text-center">
+          <div className="flex flex-col items-center py-16 gap-5 text-center px-4">
             <span className="text-5xl">🔍</span>
             <div>
               <p className="text-base font-semibold text-[#f0ece4] mb-1">
@@ -84,7 +89,7 @@ function SearchResults() {
 
         {/* 검색어 없음 */}
         {!query && !levelFilter && (
-          <div className="flex flex-col items-center py-16 gap-3 text-[#4a4640]">
+          <div className="flex flex-col items-center py-16 gap-3 text-[#4a4640] text-center px-4">
             <span className="text-4xl">🏠</span>
             <p>검색어를 입력하세요</p>
           </div>
@@ -92,7 +97,7 @@ function SearchResults() {
 
         {/* 필터 결과 없음 */}
         {query && results.length > 0 && filtered.length === 0 && (
-          <div className="flex flex-col items-center py-16 gap-3 text-center">
+          <div className="flex flex-col items-center py-16 gap-3 text-center px-4">
             <span className="text-4xl">📂</span>
             <p className="text-sm text-[#4a4640]">해당 카테고리에 데이터가 없습니다</p>
           </div>

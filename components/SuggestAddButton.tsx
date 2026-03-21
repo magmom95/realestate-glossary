@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 import { useState } from 'react';
 import { Toast, useToast } from './Toast';
 import FullScreenSpinner from './FullScreenSpinner';
@@ -24,14 +24,14 @@ export function SuggestAddButton({ query }: SuggestAddButtonProps) {
       });
 
       if (res.ok) {
-        show('요청이 전송됐어요. 관리자 검토 후 반영됩니다 🙏');
-        setTimeout(() => router.push('/'), 1500); // 토스트 보여주고 이동
+        show('?붿껌???꾩넚?먯뼱?? 愿由ъ옄 寃????諛섏쁺?⑸땲???솋');
+        setTimeout(() => router.push('/'), 1500); // ?좎뒪??蹂댁뿬二쇨퀬 ?대룞
       } else {
         const data = await res.json();
-        show(data.error ?? '전송에 실패했어요. 다시 시도해주세요.', 'error');
+        show(data.error ?? '?꾩넚???ㅽ뙣?덉뼱?? ?ㅼ떆 ?쒕룄?댁＜?몄슂.', 'error');
       }
     } catch {
-      show('네트워크 오류가 발생했어요.', 'error');
+      show('?ㅽ듃?뚰겕 ?ㅻ쪟媛 諛쒖깮?덉뼱??', 'error');
     } finally {
       setLoading(false);
     }
@@ -39,21 +39,25 @@ export function SuggestAddButton({ query }: SuggestAddButtonProps) {
 
   return (
     <>
-      {loading && <FullScreenSpinner message="추가 요청 전송 중…" />}
+      {loading && <FullScreenSpinner message="異붽? ?붿껌 ?꾩넚 以묅?" />}
       <button
         onClick={handleClick}
         disabled={loading}
         className="
-          inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold
+          w-full sm:w-auto flex flex-col sm:flex-row items-center justify-center text-center sm:text-left
+          gap-1.5 sm:gap-2 px-4 py-3 rounded-xl text-xs sm:text-sm font-semibold
           border border-[rgba(232,201,125,0.25)] text-[#e8c97d] bg-[rgba(232,201,125,0.08)]
           hover:bg-[rgba(232,201,125,0.15)] hover:border-[rgba(232,201,125,0.4)]
           transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed
         "
       >
-        <span>📬</span>
-        &quot;{query}&quot; 추가 요청하기
+        <span className="text-base sm:text-lg leading-none">?벉</span>
+        <span className="leading-snug break-words text-pretty">
+          &quot;{query}&quot; 異붽? ?붿껌?섍린
+        </span>
       </button>
       {toast && <Toast message={toast.message} type={toast.type} onClose={hide} />}
     </>
   );
 }
+
