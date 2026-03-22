@@ -133,7 +133,7 @@ export default async function Image() {
             letterSpacing: '1px',
           }}
         >
-          realestate-glossary.vercel.app
+          homing-bird.vercel.app
         </div>
       </div>
     ),
