@@ -31,7 +31,7 @@ function isRateLimited(ip: string): boolean {
 function buildAddEmail(term: string) {
   const safeTerm = escapeHtml(term);
   return {
-    subject: `[부동산 사전] 용어 추가 요청: ${safeTerm}`,
+    subject: `[홈 잉 버드] 용어 추가 요청: ${safeTerm}`,
     html: `
       <div style="font-family:sans-serif;max-width:480px;margin:0 auto;padding:32px;background:#f5f5f5;border-radius:12px;">
         <h2 style="margin:0 0 20px;font-size:20px;color:#111;">📬 용어 추가 요청</h2>
@@ -39,7 +39,7 @@ function buildAddEmail(term: string) {
           <p style="margin:0 0 6px;font-size:11px;color:#999;text-transform:uppercase;letter-spacing:1px;">요청 용어</p>
           <p style="margin:0;font-size:26px;font-weight:700;color:#111;">${safeTerm}</p>
         </div>
-        <p style="margin:20px 0 0;font-size:12px;color:#bbb;">부동산 용어 사전 · 자동 발송</p>
+        <p style="margin:20px 0 0;font-size:12px;color:#bbb;">홈 잉 버드 · 자동 발송</p>
       </div>
     `,
   };
@@ -51,7 +51,7 @@ function buildEditEmail(term: string, field: string, content: string) {
   const fieldLabel = FIELD_LABELS[field] ?? escapeHtml(field);
 
   return {
-    subject: `[부동산 사전] 수정 제안: ${safeTerm} — ${fieldLabel}`,
+    subject: `[홈 잉 버드] 수정 제안: ${safeTerm} — ${fieldLabel}`,
     html: `
       <div style="font-family:sans-serif;max-width:480px;margin:0 auto;padding:32px;background:#f5f5f5;border-radius:12px;">
         <h2 style="margin:0 0 20px;font-size:20px;color:#111;">✏️ 용어 수정 제안</h2>
@@ -67,7 +67,7 @@ function buildEditEmail(term: string, field: string, content: string) {
           <p style="margin:0 0 8px;font-size:11px;color:#999;text-transform:uppercase;letter-spacing:1px;">제안 내용</p>
           <p style="margin:0;font-size:15px;line-height:1.7;color:#333;white-space:pre-wrap;">${safeContent}</p>
         </div>
-        <p style="margin:20px 0 0;font-size:12px;color:#bbb;">부동산 용어 사전 · 자동 발송</p>
+        <p style="margin:20px 0 0;font-size:12px;color:#bbb;">홈 잉 버드 · 자동 발송</p>
       </div>
     `,
   };
@@ -111,7 +111,7 @@ export async function POST(req: NextRequest) {
       if (fieldEntries.length === 1) {
         ({ subject, html } = buildEditEmail(term.trim(), fieldEntries[0].field, fieldEntries[0].content));
       } else {
-        subject = `[부동산 사전] 수정 제안: ${escapeHtml(term.trim())} (${fieldEntries.length}건)`;
+        subject = `[홈 잉 버드] 수정 제안: ${escapeHtml(term.trim())} (${fieldEntries.length}건)`;
         html = fieldEntries
           .map(({ field: f, content: c }) => buildEditEmail(term.trim(), f, c).html)
           .join('<hr style="border:none;border-top:1px solid #e0e0e0;margin:8px 0;">');

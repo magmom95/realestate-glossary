@@ -7,7 +7,7 @@ export default function Header() {
       bg-[rgba(13,13,13,0.85)] backdrop-blur-xl border-b border-white/[0.07]">
       <Link href="/" className="flex items-center gap-2 shrink-0">
         <span className="text-lg sm:text-xl">🏠</span>
-        <span className="text-[13px] sm:text-[15px] font-bold tracking-tight">부동산 사전</span>
+        <span className="text-[13px] sm:text-[15px] font-bold tracking-tight">홈 잉 버드</span>
       </Link>
 
       <NavLinks />

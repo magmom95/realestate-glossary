@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   const { id } = await params;
   const item = findById(id);
   if (!item) return { title: '용어를 찾을 수 없습니다' };
-  return { title: `${item.term} | 부동산 용어 사전`, description: item.easy_def };
+  return { title: `${item.term} | 홈 잉 버드`, description: item.easy_def };
 }
 
 export default async function TermPage({ params }: { params: Promise<{ id: string }> }) {

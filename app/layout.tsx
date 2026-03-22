@@ -11,7 +11,7 @@ const dmSerif = DM_Serif_Display({
 });
 
 export const metadata: Metadata = {
-  title: '부동산 용어 사전 | 부린이를 위한 검색 학습 엔진',
+  title: '홈 잉 버드 | 부린이를 위한 검색 학습 엔진',
   description: '부동산 용어를 검색하고, 비유로 이해하고, 연관 개념으로 이어서 학습하세요.',
   keywords: ['부동산', '용어사전', '전세', 'LTV', '재개발', '청약', '부린이'],
 };
@@ -29,7 +29,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <main className="min-h-[calc(100dvh-52px)] sm:min-h-[calc(100dvh-60px)]">{children}</main>
         <footer className="border-t border-white/[0.07] py-6 sm:py-8 text-center text-[11px] sm:text-xs text-[#4a4640] px-4">
-          © 2026 부동산 용어 사전 · 초보자를 위한 검색 기반 학습 엔진
+          © 2026 홈 잉 버드 · 초보자를 위한 검색 기반 학습 엔진
         </footer>
       </body>
     </html>

@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og';
 
 export const runtime = 'edge';
-export const alt = '부동산 용어 사전 — 초보자를 위한 검색 학습 엔진';
+export const alt = '홈 잉 버드 — 초보자를 위한 검색 학습 엔진';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 

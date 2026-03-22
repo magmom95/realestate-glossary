@@ -16,17 +16,14 @@ export default function HomePage() {
     <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
       {/* Hero */}
       <section className="text-center mb-10 sm:mb-16">
-        <p className="text-xs font-bold text-[#e8c97d] tracking-[3px] uppercase mb-3 sm:mb-4">
+        <p className="text-xs font-bold text-[#8a8276] tracking-[3px] uppercase mb-3 sm:mb-4">
           검색 기반 학습 엔진
         </p>
-        <h1 className="font-display text-3xl sm:text-5xl md:text-7xl font-normal tracking-tight leading-[1.1] mb-4 sm:mb-5">
-          부동산 용어
+        <h1 className="font-display text-3xl sm:text-4xl md:text-6xl font-normal tracking-tight leading-[1.1] mb-4 sm:mb-5">
+          <span className="text-[#e8c97d]">홈 잉 버드</span>
           <br />
-          <em className="text-[#e8c97d] not-italic">비유로 이해하세요</em>
+         <em className="not-italic text-2xl sm:text-3xl">부동산 용어 비유로 이해하세요</em>
         </h1>
-        <p className="text-sm sm:text-base text-[#8a8276] leading-relaxed max-w-md mx-auto mb-8 sm:mb-10">
-          검색하고  쉬운 비유로 이해하고 연관 개념으로 학습하는 부동산
-        </p>
         <SearchBox />
       </section>
 
