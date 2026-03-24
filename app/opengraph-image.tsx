@@ -81,7 +81,7 @@ export default async function Image() {
               letterSpacing: '-1px',
             }}
           >
-            부동산 용어 사전
+            홈 잉 버드
           </div>
 
           {/* 서브 타이틀 */}
