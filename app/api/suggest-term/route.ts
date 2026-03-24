@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import { escapeHtml } from '@/lib/sanitize';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = new Resend(process.env.RESEND_API_KEY || 'dummy');
 const OWNER_EMAIL = 'magmom7777@gmail.com';
 
 const FIELD_LABELS: Record<string, string> = {

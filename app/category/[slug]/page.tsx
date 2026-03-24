@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { getByCategory, ALL_CATEGORIES } from '@/lib/search';
 import { TermCategory } from '@/lib/types';
-import BackButton from '@/components/BackButton';
+import Breadcrumb from '@/components/Breadcrumb';
 import LevelBadge from '@/components/LevelBadge';
 
 export async function generateStaticParams() {
@@ -24,7 +24,10 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-10">
-      <BackButton />
+      <Breadcrumb items={[
+        { label: '홈', href: '/' },
+        { label: catInfo.label },
+      ]} />
 
       {/* Header */}
       <div className="flex items-center gap-3 sm:gap-5 bg-[#141414] border border-white/[0.07] rounded-2xl p-4 sm:p-7 mb-6 sm:mb-8">

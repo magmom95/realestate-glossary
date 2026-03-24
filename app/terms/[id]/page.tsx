@@ -2,8 +2,10 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { findById, getRelatedTerms } from '@/lib/search';
 import { glossaryData } from '@/data/glossary';
-import BackButton from '@/components/BackButton';
 import LevelBadge from '@/components/LevelBadge';
+import Breadcrumb from '@/components/Breadcrumb';
+import LinkedText from '@/components/LinkedText';
+import Foldable from '@/components/Foldable';
 import { SuggestEditButton } from '@/components/SuggestEditModal';
 
 export async function generateStaticParams() {
@@ -26,7 +28,11 @@ export default async function TermPage({ params }: { params: Promise<{ id: strin
 
   return (
     <div className="max-w-2xl mx-auto px-4 sm:px-6 py-6 sm:py-10">
-      <BackButton />
+      <Breadcrumb items={[
+        { label: '홈', href: '/' },
+        { label: item.category, href: `/category/${encodeURIComponent(item.category)}` },
+        { label: item.term },
+      ]} />
 
       {/* Header card */}
       <div className="bg-[#141414] border border-white/[0.07] rounded-2xl p-5 sm:p-8 mb-3 sm:mb-4">
@@ -61,7 +67,7 @@ export default async function TermPage({ params }: { params: Promise<{ id: strin
 
         {/* Definition */}
         <p className="text-base sm:text-lg leading-relaxed text-[#f0ece4] pb-5 sm:pb-6 border-b border-white/[0.07]">
-          {item.easy_def}
+          <LinkedText text={item.easy_def} currentTermId={item.id} />
         </p>
 
         {/* 수정 제안 버튼 */}
@@ -73,45 +79,41 @@ export default async function TermPage({ params }: { params: Promise<{ id: strin
 
       {/* Analogy */}
       <div className="bg-[rgba(232,201,125,0.06)] border border-[rgba(232,201,125,0.18)] rounded-xl p-4 sm:p-6 mb-3">
-        <div className="flex gap-3">
-          <span className="text-xl flex-shrink-0 mt-0.5">💡</span>
-          <div>
-            <p className="text-[11px] font-bold text-[#e8c97d] tracking-widest uppercase mb-2">이렇게 이해하세요</p>
-            <p className="text-[15px] text-[#8a8276] leading-relaxed">{item.analogy}</p>
-          </div>
-        </div>
+        <Foldable title="이렇게 이해하세요" emoji="💡" titleColor="#e8c97d">
+          <p className="text-[15px] text-[#8a8276] leading-relaxed">
+            <LinkedText text={item.analogy} currentTermId={item.id} />
+          </p>
+        </Foldable>
       </div>
 
       {/* Example */}
       <div className="bg-[#141414] border border-white/[0.07] rounded-xl p-4 sm:p-6 mb-3">
-        <div className="flex gap-3">
-          <span className="text-xl flex-shrink-0 mt-0.5">📌</span>
-          <div>
-            <p className="text-[11px] font-bold text-[#5b9bd5] tracking-widest uppercase mb-2">실제 예시</p>
-            <p className="text-[15px] text-[#8a8276] leading-relaxed">{item.example}</p>
-          </div>
-        </div>
+        <Foldable title="실제 예시" emoji="📌" titleColor="#5b9bd5">
+          <p className="text-[15px] text-[#8a8276] leading-relaxed">
+            <LinkedText text={item.example} currentTermId={item.id} />
+          </p>
+        </Foldable>
       </div>
 
       {/* Note */}
       {item.note && (
-        <div className="bg-[#1c1c1c] border border-white/[0.07] rounded-xl p-5 mb-3 flex gap-3">
-          <span className="text-lg flex-shrink-0">📝</span>
-          <div>
-            <p className="text-[11px] font-bold text-[#4a4640] tracking-widest uppercase mb-1.5">실무 팁</p>
-            <p className="text-sm text-[#8a8276] leading-relaxed">{item.note}</p>
-          </div>
+        <div className="bg-[#1c1c1c] border border-white/[0.07] rounded-xl p-4 sm:p-6 mb-3">
+          <Foldable title="실무 팁" emoji="📝" titleColor="#4a4640" defaultOpen={false}>
+            <p className="text-sm text-[#8a8276] leading-relaxed">
+              <LinkedText text={item.note} currentTermId={item.id} />
+            </p>
+          </Foldable>
         </div>
       )}
 
       {/* Risk */}
       {item.risk && (
-        <div className="bg-[rgba(224,82,82,0.07)] border border-[rgba(224,82,82,0.2)] rounded-xl p-5 mb-5 flex gap-3">
-          <span className="text-lg flex-shrink-0">⚠️</span>
-          <div>
-            <p className="text-[11px] font-bold text-[#e05252] tracking-widest uppercase mb-1.5">주의 사항</p>
-            <p className="text-sm text-[#e05252] opacity-90 leading-relaxed">{item.risk}</p>
-          </div>
+        <div className="bg-[rgba(224,82,82,0.07)] border border-[rgba(224,82,82,0.2)] rounded-xl p-4 sm:p-6 mb-5">
+          <Foldable title="주의 사항" emoji="⚠️" titleColor="#e05252">
+            <p className="text-sm text-[#e05252] opacity-90 leading-relaxed">
+              <LinkedText text={item.risk} currentTermId={item.id} />
+            </p>
+          </Foldable>
         </div>
       )}
 
