@@ -88,12 +88,12 @@ function SearchResults() {
         )}
 
         {/* 검색어 없음 */}
-        {!query && !levelFilter && (
-          <div className="flex flex-col items-center py-16 gap-3 text-[#4a4640] text-center px-4">
-            <span className="text-4xl">🏠</span>
-            <p>검색어를 입력하세요</p>
-          </div>
-        )}
+      {!query && !levelFilter && (
+        <div className="flex flex-col items-center py-16 gap-3 text-[#4a4640] text-center px-4">
+          <span className="text-4xl">🕊️</span>
+          <p>검색어를 입력하세요</p>
+        </div>
+      )}
 
         {/* 필터 결과 없음 */}
         {query && results.length > 0 && filtered.length === 0 && (

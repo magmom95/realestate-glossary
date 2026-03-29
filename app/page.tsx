@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import {
   ALL_CATEGORIES,
@@ -19,10 +20,27 @@ export default function HomePage() {
         <p className="text-xs font-bold text-[#8a8276] tracking-[3px] uppercase mb-3 sm:mb-4">
           검색 기반 학습 엔진
         </p>
-        <h1 className="font-display text-3xl sm:text-4xl md:text-6xl font-normal tracking-tight leading-[1.1] mb-4 sm:mb-5">
-          <span className="text-[#e8c97d]">홈 잉 버드</span>
-          <br />
-         <em className="not-italic text-2xl sm:text-3xl">부동산 용어 비유로 이해하세요</em>
+        <div className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full border border-white/[0.15] bg-white/[0.04] text-[12px] sm:text-sm uppercase tracking-[0.35em] text-[#f2e7d2] mb-3 sm:mb-4">
+          <span className="h-2.5 w-2.5 rounded-full bg-[#e8c97d] animate-pulse shadow-[0_0_10px_rgba(232,201,125,0.6)]" />
+          AI 부동산 튜터
+        </div>
+        <h1 className="font-display text-[2.35rem] sm:text-[2.9rem] md:text-[3.5rem] font-normal tracking-tight leading-[1.08] mb-4 sm:mb-5">
+          <div className="flex flex-col items-center gap-5">
+            <Image
+              src="/main-logo.png"
+              alt="Home-ing Bird 로고"
+              width={473}
+              height={528}
+              className="h-28 sm:h-32 md:h-36 w-auto drop-shadow-[0_18px_60px_rgba(202,163,91,0.35)]"
+              priority
+            />
+            <span className="text-[1rem] sm:text-lg md:text-xl font-semibold tracking-[0.3em] text-[#f6ebd4] uppercase">
+              HOME-ING-BIRD
+            </span>
+            <p className="text-xs sm:text-sm text-[#8a8276] font-sans">
+              비유를 통해 쉽게 이해하는 AI 부동산 튜터
+            </p>
+          </div>
         </h1>
         <SearchBox />
       </section>

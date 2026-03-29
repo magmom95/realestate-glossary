@@ -68,7 +68,7 @@ export default async function Image() {
               marginBottom: '8px',
             }}
           >
-            🏠
+            🕊️
           </div>
 
           {/* 타이틀 */}
