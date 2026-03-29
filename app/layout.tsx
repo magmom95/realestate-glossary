@@ -10,11 +10,18 @@ const dmSerif = DM_Serif_Display({
   display: 'swap',
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://homing-bird.vercel.app';
+
 export const metadata: Metadata = {
   title: '홈 잉 버드 | 부린이를 위한 검색 학습 엔진',
   description: '부동산 용어를 검색하고, 비유로 이해하고, 연관 개념으로 이어서 학습하세요.',
   keywords: ['부동산', '용어사전', '전세', 'LTV', '재개발', '청약', '부린이'],
+  metadataBase: new URL(siteUrl),
   openGraph: {
+    url: siteUrl,
+    siteName: 'HOME-ING-BIRD',
+    title: 'HOME-ING-BIRD | 부린이를 위한 검색 학습 엔진',
+    description: '비유를 통해 쉽게 배우는 AI 부동산 튜터',
     images: [
       {
         url: '/op.png',
@@ -23,6 +30,12 @@ export const metadata: Metadata = {
         alt: '부동버드 | 초보자를 위한 검증된 용어 사전',
       },
     ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'HOME-ING-BIRD | 부린이를 위한 검색 학습 엔진',
+    description: '비유를 통해 쉽게 배우는 AI 부동산 튜터',
+    images: ['/op.png'],
   },
   icons: {
     icon: [
