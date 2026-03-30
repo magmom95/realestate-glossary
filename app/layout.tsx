@@ -1,52 +1,58 @@
-import type { Metadata } from 'next';
-import { DM_Serif_Display } from 'next/font/google';
-import './globals.css';
-import Header from '@/components/Header';
+import type { Metadata } from "next";
+import { DM_Serif_Display } from "next/font/google";
+import "./globals.css";
+import Header from "@/components/Header";
 
 const dmSerif = DM_Serif_Display({
-  weight: '400',
-  subsets: ['latin'],
-  variable: '--font-display',
-  display: 'swap',
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-display",
+  display: "swap",
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://homing-bird.vercel.app';
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://homing-bird.vercel.app";
 
 export const metadata: Metadata = {
-  title: '홈 잉 버드 | 부린이를 위한 검색 학습 엔진',
-  description: '부동산 용어를 검색하고, 비유로 이해하고, 연관 개념으로 이어서 학습하세요.',
-  keywords: ['부동산', '용어사전', '전세', 'LTV', '재개발', '청약', '부린이'],
+  title: "홈 잉 버드 | 부린이를 위한 검색 학습 엔진",
+  description:
+    "부동산 용어를 검색하고, 비유로 이해하고, 연관 개념으로 이어서 학습하세요.",
+  keywords: ["부동산", "용어사전", "전세", "LTV", "재개발", "청약", "부린이"],
   metadataBase: new URL(siteUrl),
   openGraph: {
     url: siteUrl,
-    siteName: 'HOME-ING-BIRD',
-    title: 'HOME-ING-BIRD | 부린이를 위한 검색 학습 엔진',
-    description: '비유를 통해 쉽게 배우는 AI 부동산 튜터',
+    siteName: "HOMING-BIRD",
+    title: "HOMING-BIRD | 부린이를 위한 검색 학습 엔진",
+    description: "비유를 통해 쉽게 배우는 AI 부동산 튜터",
     images: [
       {
-        url: '/op.png',
+        url: "/op.png",
         width: 1200,
         height: 630,
-        alt: '부동버드 | 초보자를 위한 검증된 용어 사전',
+        alt: "부동버드 | 초보자를 위한 검증된 용어 사전",
       },
     ],
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'HOME-ING-BIRD | 부린이를 위한 검색 학습 엔진',
-    description: '비유를 통해 쉽게 배우는 AI 부동산 튜터',
-    images: ['/op.png'],
+    card: "summary_large_image",
+    title: "HOMING-BIRD | 부린이를 위한 검색 학습 엔진",
+    description: "비유를 통해 쉽게 배우는 AI 부동산 튜터",
+    images: ["/op.png"],
   },
   icons: {
     icon: [
-      { url: '/icon16.png', sizes: '16x16', type: 'image/png' },
-      { url: '/icon48.png', sizes: '48x48', type: 'image/png' },
-      { url: '/icon128.png', sizes: '128x128', type: 'image/png' },
+      { url: "/icon16.png", sizes: "16x16", type: "image/png" },
+      { url: "/icon48.png", sizes: "48x48", type: "image/png" },
+      { url: "/icon128.png", sizes: "128x128", type: "image/png" },
     ],
   },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="ko" className={dmSerif.variable}>
       <head>
@@ -57,9 +63,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="bg-[#0d0d0d] text-[#f0ece4] min-h-dvh font-sans">
         <Header />
-        <main className="min-h-[calc(100dvh-52px)] sm:min-h-[calc(100dvh-60px)]">{children}</main>
+        <main className="min-h-[calc(100dvh-52px)] sm:min-h-[calc(100dvh-60px)]">
+          {children}
+        </main>
         <footer className="border-t border-white/[0.07] py-6 sm:py-8 text-center text-[11px] sm:text-xs text-[#4a4640] px-4">
-          © 2026 HOME-ING-BIRD · 초보자를 위한 검색 기반 학습 엔진
+          © 2026 HOMING-BIRD · 초보자를 위한 검색 기반 학습 엔진
         </footer>
       </body>
     </html>

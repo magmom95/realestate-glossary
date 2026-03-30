@@ -35,7 +35,7 @@ export default function HomePage() {
               priority
             />
             <span className="text-[1rem] sm:text-lg md:text-xl font-semibold tracking-[0.3em] text-[#f6ebd4] uppercase">
-              HOME-ING-BIRD
+              HOMING-BIRD
             </span>
             <p className="text-xs sm:text-sm text-[#8a8276] font-sans">
               비유를 통해 쉽게 이해하는 AI 부동산 튜터
