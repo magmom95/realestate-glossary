@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     description: "비유를 통해 쉽게 배우는 AI 부동산 튜터",
     images: [
       {
-        url: "/op.png",
+        url: `${siteUrl}/op.png`,
         width: 1200,
         height: 630,
         alt: "부동버드 | 초보자를 위한 검증된 용어 사전",
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "HOMING-BIRD | 부린이를 위한 검색 학습 엔진",
     description: "비유를 통해 쉽게 배우는 AI 부동산 튜터",
-    images: ["/op.png"],
+    images: [`${siteUrl}/op.png`],
   },
   icons: {
     icon: [
