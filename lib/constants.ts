@@ -13,6 +13,7 @@ export const ALL_CATEGORIES: { value: TermCategory; label: string; emoji: string
   { value: '세금', label: '세금', emoji: '📊' },
   { value: '플랫폼', label: '플랫폼/슬랭', emoji: '💬' },
   { value: '규제', label: '규제', emoji: '🚫' },
+  { value: '건축', label: '건축/점검', emoji: '🧱' },
 ];
 
 export const INITIAL_KEYWORDS = [

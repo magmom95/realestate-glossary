@@ -12,7 +12,8 @@ export type TermCategory =
   | '정비사업'
   | '세금'
   | '플랫폼'
-  | '규제';
+  | '규제'
+  | '건축';
 
 export interface RealEstateGlossaryItem {
   id: string;
